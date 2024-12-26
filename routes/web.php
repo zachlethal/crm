@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Dashboard admin
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
+// Gestion des user (user)
     Route::prefix('admin/users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.users.index'); // Liste des utilisateurs
         Route::get('/create', [UserController::class, 'create'])->name('admin.users.create'); // Créer un utilisateur
