@@ -36,9 +36,9 @@ class AdminProduitController extends Controller
 
         $produit = Produit::create($validated);
 
-        // Si une photo est envoyée, la sauvegarder
+        // Si une photo est envoyée, la sauvegarder directement dans le dossier public
         if ($request->hasFile('photo')) {
-            $produit->photo = $request->file('photo')->store('photos');
+            $produit->photo = $request->file('photo')->storeAs('public', $request->file('photo')->getClientOriginalName());
             $produit->save();
         }
 
@@ -66,18 +66,21 @@ class AdminProduitController extends Controller
 
         $produit->update($validated);
 
-        // Si une nouvelle photo est envoyée, la sauvegarder
+        // Si une nouvelle photo est envoyée, la sauvegarder directement dans le dossier public
         if ($request->hasFile('photo')) {
-            $produit->photo = $request->file('photo')->store('photos');
+            $produit->photo = $request->file('photo')->storeAs('public', $request->file('photo')->getClientOriginalName());
             $produit->save();
         }
 
         return redirect()->route('admin.produits.index')->with('success', 'Produit mis à jour avec succès.');
     }
+
+    // Afficher les détails d'un produit
     public function show(Produit $produit)
     {
         return view('admin.produits.show', compact('produit'));
     }
+
     // Supprimer un produit
     public function destroy(Produit $produit)
     {
