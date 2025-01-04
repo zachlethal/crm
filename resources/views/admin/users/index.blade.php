@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-3xl font-extrabold text-gray-800 dark:text-gray-100">
+        <h2 class="text-xl font-extrabold text-gray-800 dark:text-gray-100">
             {{ __('Manage Users') }}
         </h2>
     </x-slot>
@@ -8,8 +8,7 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <!-- Search and Filter Bar -->
-            <div
-                class="flex flex-col items-center justify-between p-4 mb-8 bg-white rounded-lg shadow-md sm:flex-row dark:bg-gray-800">
+            <div class="flex flex-col items-center justify-between p-4 mb-8 bg-white rounded-lg shadow-md sm:flex-row dark:bg-gray-800">
                 <div class="flex items-center w-full space-x-4 sm:w-auto">
                     <input type="text" id="searchInput" placeholder="Search by name or email..."
                         class="w-full px-4 py-2 border rounded-lg sm:w-64 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-300 transition-all" />
@@ -59,18 +58,17 @@
 
                         <!-- Actions -->
                         <div class="flex items-center justify-end mt-6 space-x-4">
-                            <!-- View Button (with eye icon) -->
+                            <!-- View Button (Blue) -->
                             <a href="{{ route('admin.users.show', $user) }}"
-                                class="inline-flex items-center px-4 py-2 text-sm text-gray-700 bg-blue-200 rounded-lg hover:bg-blue-300 dark:bg-blue-700 dark:text-gray-200 dark:hover:bg-blue-600 focus:outline-none transition-all">
+                                class="inline-flex items-center px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 focus:outline-none transition-all">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.732 5 12 5c4.268 0 8.268 2.943 9.542 7-1.274 4.057-5.274 7-9.542 7-4.268 0-8.268-2.943-9.542-7zm9.542-3c-.989 0-1.788.791-1.788 1.762S11.013 12 12 12s1.788-.791 1.788-1.762S12.989 9 12 9z" />
                                 </svg>
-
                                 View
                             </a>
-                            <!-- Edit Button -->
+                            <!-- Edit Button (Green) -->
                             <a href="{{ route('admin.users.edit', $user) }}"
-                                class="inline-flex items-center px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 focus:outline-none transition-all">
+                                class="inline-flex items-center px-4 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 focus:outline-none transition-all">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -78,7 +76,7 @@
                                 </svg>
                                 Edit
                             </a>
-                            <!-- Delete Button -->
+                            <!-- Delete Button (Red) -->
                             <button type="button"
                                 onclick="openDeleteModal({{ $user->id }}, '{{ $user->name }}')"
                                 class="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 dark:bg-red-800 dark:text-red-300 dark:hover:bg-red-700 focus:outline-none transition-all">
@@ -89,7 +87,6 @@
                                 </svg>
                                 Delete
                             </button>
-
                         </div>
 
                     </div>
