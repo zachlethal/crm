@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminProduitController;
 use App\Http\Controllers\Superviseur\SuperviseurProduitController;
 use App\Http\Controllers\Admin\AdminBoutiqueController;
+use App\Http\Controllers\superviseur\superviseurBoutiqueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,15 @@ Route::middleware(['auth', 'role:superviseur'])->group(function () {
         Route::get('/{produit}/edit', [SuperviseurProduitController::class, 'edit'])->name('superviseur.produits.edit'); // Modifier un produit
         Route::put('/{produit}', [SuperviseurProduitController::class, 'update'])->name('superviseur.produits.update'); // Mettre à jour un produit
         Route::delete('/{produit}', [SuperviseurProduitController::class, 'destroy'])->name('superviseur.produits.destroy'); // Supprimer un produit
+    });
+    Route::prefix('superviseur/boutiques')->group(function () {
+        Route::get('/', [superviseurBoutiqueController::class, 'index'])->name('superviseur.boutiques.index'); // Liste des boutiques
+        Route::get('/create', [superviseurBoutiqueController::class, 'create'])->name('superviseur.boutiques.create'); // Créer un boutiques
+        Route::post('/', [superviseurBoutiqueController::class, 'store'])->name('superviseur.boutiques.store'); // Enregistrer un boutiques
+        Route::get('/{produit}', [superviseurBoutiqueController::class, 'show'])->name('superviseur.boutiques.show'); // Détails boutiques
+        Route::get('/{produit}/edit', [superviseurBoutiqueController::class, 'edit'])->name('superviseur.boutiques.edit'); // Modifier un boutiques
+        Route::put('/{produit}', [superviseurBoutiqueController::class, 'update'])->name('superviseur.boutiques.update'); // Mettre à jour un boutiques
+        Route::delete('/{produit}', [superviseurBoutiqueController::class, 'destroy'])->name('superviseur.boutiques.destroy'); // Supprimer un boutiques
     });
 });
 

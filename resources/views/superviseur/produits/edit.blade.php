@@ -1,90 +1,98 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-3xl font-extrabold text-gray-800 dark:text-gray-100">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
             {{ __('Edit Product') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                <form action="{{ route('admin.products.update', $product) }}" method="POST" class="space-y-6">
-                    @csrf
-                    @method('PUT')
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form action="{{ route('superviseur.produits.update', $produit) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-                    <!-- Product Name -->
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Product Name
-                        </label>
-                        <input type="text" name="name" id="name" value="{{ old('name', $product->name) }}"
-                            class="w-full px-4 py-2 mt-1 border rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600"
-                            required>
-                    </div>
+                        <div class="space-y-6">
+                            <div class="mb-4">
+                                <label for="marque" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Marque</label>
+                                <input type="text" name="marque" id="marque" value="{{ old('marque', $produit->marque) }}"
+                                    class="w-full mt-1 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:focus:ring-indigo-500">
+                                @error('marque')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
 
-                    <!-- Category -->
-                    <div>
-                        <label for="category" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Category
-                        </label>
-                        <input type="text" name="category" id="category"
-                            value="{{ old('category', $product->category) }}"
-                            class="w-full px-4 py-2 mt-1 border rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600"
-                            required>
-                    </div>
+                            <div class="mb-4">
+                                <label for="type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
+                                <select name="type" id="type"
+                                    class="w-full mt-1 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:focus:ring-indigo-500">
+                                    <option value="interieure" {{ $produit->type == 'interieure' ? 'selected' : '' }}>Intérieure</option>
+                                    <option value="exterieur" {{ $produit->type == 'exterieur' ? 'selected' : '' }}>Extérieure</option>
+                                </select>
+                                @error('type')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
 
-                    <!-- Materials -->
-                    <div>
-                        <label for="material" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Materials
-                        </label>
-                        <textarea name="material" id="material" rows="4"
-                            class="w-full px-4 py-2 mt-1 border rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">{{ old('material', $product->material) }}</textarea>
-                    </div>
+                            <div class="mb-4">
+                                <label for="categorie" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Catégorie</label>
+                                <input type="text" name="categorie" id="categorie" value="{{ old('categorie', $produit->categorie) }}"
+                                    class="w-full mt-1 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:focus:ring-indigo-500">
+                                @error('categorie')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
 
-                    <!-- Gender -->
-                    <div>
-                        <label for="gender" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Gender
-                        </label>
-                        <select name="gender" id="gender"
-                            class="w-full px-4 py-2 mt-1 border rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">
-                            <option value="homme" {{ old('gender', $product->gender) === 'homme' ? 'selected' : '' }}>
-                                Homme
-                            </option>
-                            <option value="femme" {{ old('gender', $product->gender) === 'femme' ? 'selected' : '' }}>
-                                Femme
-                            </option>
-                            <option value="unisexe" {{ old('gender', $product->gender) === 'unisexe' ? 'selected' : ''
-                                }}>
-                                Unisexe
-                            </option>
-                        </select>
-                    </div>
+                            <div class="mb-4">
+                                <label for="gamme" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Gamme</label>
+                                <input type="text" name="gamme" id="gamme" value="{{ old('gamme', $produit->gamme) }}"
+                                    class="w-full mt-1 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:focus:ring-indigo-500">
+                                @error('gamme')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
 
-                    <!-- Price -->
-                    <div>
-                        <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Price
-                        </label>
-                        <input type="number" name="price" id="price" step="0.01"
-                            value="{{ old('price', $product->price) }}"
-                            class="w-full px-4 py-2 mt-1 border rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600"
-                            required>
-                    </div>
+                            <div class="mb-4">
+                                <label for="volume" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Volume</label>
+                                <input type="number" name="volume" id="volume" value="{{ old('volume', $produit->volume) }}"
+                                    class="w-full mt-1 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:focus:ring-indigo-500">
+                                @error('volume')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
 
-                    <!-- Save Button -->
-                    <div class="flex justify-end space-x-4">
-                        <a href="{{ route('admin.products.index') }}"
-                            class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
-                            Cancel
-                        </a>
-                        <button type="submit"
-                            class="px-6 py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">
-                            Save Changes
-                        </button>
-                    </div>
-                </form>
+                            <div class="mb-4">
+                                <label for="famille" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Famille</label>
+                                <input type="text" name="famille" id="famille" value="{{ old('famille', $produit->famille) }}"
+                                    class="w-full mt-1 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:focus:ring-indigo-500">
+                                @error('famille')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="photo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Photo</label>
+                                <input type="file" name="photo" id="photo"
+                                    class="w-full mt-1 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:focus:ring-indigo-500">
+                                @error('photo')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="flex items-center justify-end space-x-4">
+                                <a href="{{ route('superviseur.produits.index') }}"
+                                    class="px-4 py-2 text-white bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Cancel
+                                </a>
+                                <button type="submit"
+                                    class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

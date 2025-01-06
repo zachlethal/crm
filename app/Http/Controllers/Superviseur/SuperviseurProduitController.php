@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class SuperviseurProduitController extends Controller
 {
+    public function show($id)
+{
+    $produit = Produit::findOrFail($id);
+    return view('superviseur.produits.show', compact('produit'));
+}
+
     public function index()
     {
         $produits = Produit::all();
