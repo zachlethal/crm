@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="@if (session('dark_mode')) dark @endif">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -31,6 +31,21 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <!-- Dark Mode Toggle Script -->
+            <script>
+                const toggle = document.getElementById('darkModeToggle');
+                toggle.addEventListener('change', () => {
+                    if (toggle.checked) {
+                        document.documentElement.classList.add('dark');
+                        fetch('/toggle-dark-mode');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        fetch('/toggle-dark-mode');
+                    }
+                });
+            </script>
+
         </div>
     </body>
 </html>

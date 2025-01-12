@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminProduitController;
 use App\Http\Controllers\Superviseur\SuperviseurProduitController;
 use App\Http\Controllers\Admin\AdminBoutiqueController;
+use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\superviseur\superviseurBoutiqueController;
 
 /*
@@ -89,6 +90,7 @@ Route::middleware(['auth', 'role:superviseur'])->group(function () {
         Route::delete('/{produit}', [superviseurBoutiqueController::class, 'destroy'])->name('superviseur.boutiques.destroy'); // Supprimer un boutiques
     });
 });
-
+// web.php
+Route::get('/toggle-dark-mode', [DarkModeController::class, 'toggleDarkMode']);
 // Routes d'authentification
 require __DIR__ . '/auth.php';
