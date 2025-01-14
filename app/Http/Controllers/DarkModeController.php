@@ -25,4 +25,5 @@ class DarkModeController extends Controller
         // Redirect back to the previous page
         return redirect()->back();
     }
+
 }

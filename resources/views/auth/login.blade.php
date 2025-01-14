@@ -1,8 +1,8 @@
 <x-guest-layout>
     <div class="min-h-screen flex bg-gray-100 dark:bg-gray-900">
         <!-- Left Section -->
-        <div class="w-1/2 hidden md:flex items-center justify-center bg-blue-200 dark:bg-blue-800">
-            <!-- Add your content here (e.g., images, text, etc.) -->
+        
+        <div class="w-1/2 hidden md:flex items-center justify-center bg-blue-200 dark:bg-blue-700">
             <div>
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Welcome Back!</h2>
                 <p class="mt-2 text-gray-600 dark:text-gray-400">Please login to access your account.</p>
@@ -17,7 +17,6 @@
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <!-- Email Address -->
                     <div>
                         <x-input-label for="email" :value="__('Email')" />
@@ -25,7 +24,6 @@
                             :value="old('email')" required autofocus autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
-
                     <!-- Password -->
                     <div class="mt-4">
                         <x-input-label for="password" :value="__('Password')" />
@@ -59,24 +57,5 @@
             </div>
         </div>
     </div>
-    <div class="flex items-center">
-        <span class="mr-2">Dark Mode</span>
-        <label for="darkModeToggle" class="switch">
-            <input id="darkModeToggle" type="checkbox" />
-            <span class="slider round"></span>
-        </label>
-    </div>
-    <script>
-        const toggle = document.getElementById('darkModeToggle');
-        toggle.addEventListener('change', () => {
-            if (toggle.checked) {
-                document.documentElement.classList.add('dark');
-                fetch('/toggle-dark-mode');
-            } else {
-                document.documentElement.classList.remove('dark');
-                fetch('/toggle-dark-mode');
-            }
-        });
-    </script>
-
+    <x-dark-mode-toggle />
 </x-guest-layout>

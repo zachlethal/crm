@@ -1,14 +1,13 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-extrabold text-gray-800 dark:text-gray-100">
-            {{ __('Manage Products') }}
-        </h2>
-    </x-slot>
+    <div class="flex">
+        <!-- Sidebar -->
+        <x-sidebar />
 
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <!-- Main Content -->
+        <div class="flex-grow max-w-7xl sm:px-6 lg:px-8">
             <!-- Search and Filter Bar -->
             <div class="flex flex-col items-center justify-between p-4 mb-8 bg-white rounded-lg shadow-md sm:flex-row dark:bg-gray-800">
+                <!-- Search Input and Filter Dropdown -->
                 <div class="flex items-center w-full space-x-4 sm:w-auto">
                     <input type="text" id="searchInput" placeholder="Search by name or category..."
                         class="w-full px-4 py-2 border rounded-lg sm:w-64 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
@@ -33,7 +32,7 @@
                 </div>
             </div>
 
-            <!-- Product Cards (No Grid) -->
+            <!-- Product Cards -->
             <div id="productGrid" class="space-y-6">
                 @foreach($produits as $produit)
                 <div class="relative p-6 transition-transform transform bg-white rounded-lg shadow-md dark:bg-gray-800 hover:scale-105 hover:shadow-xl product-card"

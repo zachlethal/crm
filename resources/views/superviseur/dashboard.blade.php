@@ -14,5 +14,5 @@
             </div>
         </div>
     </div>
-
+    <x-dark-mode-toggle />
 </x-app-layout>
